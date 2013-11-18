@@ -31,7 +31,7 @@
     return [[[self class] alloc] initWithString:iconName
                                      attributes:@{NSFontAttributeName:[UIFont fontWithSymbolsetFontNamed:font size:size],
                                                   NSLigatureAttributeName:@(2),
-                                                  NSBaselineOffsetAttributeName:@(-4),
+                                                  NSBaselineOffsetAttributeName:@(-size / 16.0),
                                                   NSForegroundColorAttributeName:color}];
 }
 
