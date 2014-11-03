@@ -26,14 +26,14 @@
 #pragma mark -
 @implementation UIFont (Symbolset)
 
-+ (instancetype)fontWithSymbolsetFontNamed:(SSFontName)fontName size:(CGFloat)size
-{
-    return [[self class] fontWithName:[self fontFamilyNameForSymbolsetFontNamed:fontName] size:size];
++ (instancetype)bdb_symbolsetFontNamed:(SSFontName)fontName
+                                  size:(CGFloat)size {
+    return [[self class] fontWithName:[self bdb_fontFamilyNameForSymbolsetFontNamed:fontName] size:size];
 }
 
-+ (NSString *)fontFamilyNameForSymbolsetFontNamed:(SSFontName)fontName
-{
++ (NSString *)bdb_fontFamilyNameForSymbolsetFontNamed:(SSFontName)fontName {
     static NSArray *_ssFontFamilyNames = nil;
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _ssFontFamilyNames = @[@"SSStandard",
@@ -44,6 +44,7 @@
                                @"SSPika",
                                @"SSGizmo"];
     });
+
     return _ssFontFamilyNames[fontName];
 }
 

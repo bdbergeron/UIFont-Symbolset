@@ -26,12 +26,16 @@
 #pragma mark -
 @implementation NSAttributedString (Symbolset)
 
-+ (instancetype)symbolsetIconStringWithFont:(SSFontName)font iconName:(NSString *)iconName size:(CGFloat)size color:(UIColor *)color
-{
++ (instancetype)bdb_symbolsetIconStringWithFont:(SSFontName)font
+                                       iconName:(NSString *)iconName
+                                           size:(CGFloat)size
+                                          color:(UIColor *)color {
+    UIFont *iconFont = [UIFont bdb_symbolsetFontNamed:font size:size];
+
     return [[[self class] alloc] initWithString:iconName
-                                     attributes:@{NSFontAttributeName:[UIFont fontWithSymbolsetFontNamed:font size:size],
+                                     attributes:@{NSFontAttributeName:iconFont,
                                                   NSLigatureAttributeName:@(2),
-                                                  NSBaselineOffsetAttributeName:@(-size / 16.0),
+                                                  NSBaselineOffsetAttributeName:@(-size / 16.f),
                                                   NSForegroundColorAttributeName:color}];
 }
 

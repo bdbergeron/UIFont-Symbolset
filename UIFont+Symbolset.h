@@ -20,11 +20,10 @@
 //  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 
-typedef NS_ENUM(NSInteger, SSFontName)
-{
+typedef NS_ENUM(NSInteger, SSFontName) {
     SSFontNameStandard,
     SSFontNameSymboliconsBlock,
     SSFontNameSymboliconsLine,
@@ -38,6 +37,7 @@ typedef NS_ENUM(NSInteger, SSFontName)
 #pragma mark -
 @interface UIFont (Symbolset)
 
-+ (instancetype)fontWithSymbolsetFontNamed:(SSFontName)fontName size:(CGFloat)size;
++ (instancetype)bdb_symbolsetFontNamed:(SSFontName)fontName
+                                  size:(CGFloat)size;
 
 @end

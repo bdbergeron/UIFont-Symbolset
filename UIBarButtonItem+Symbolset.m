@@ -27,30 +27,36 @@
 #pragma mark -
 @implementation UIBarButtonItem (Symbolset)
 
-- (id)initWithSymbolsetIconName:(NSString *)iconName font:(SSFontName)font color:(UIColor *)color target:(id)target action:(SEL)action
-{
-    NSParameterAssert(iconName);
-    NSParameterAssert(color);
++ (instancetype)bdb_barButtionItemWithSymbolsetIconName:(NSString *)iconName
+                                                   font:(SSFontName)font
+                                                  color:(UIColor *)color
+                                                 target:(id)target
+                                                 action:(SEL)action {
+    UIBarButtonItem *button = [[[self class] alloc] initWithTitle:iconName
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:target
+                                                           action:action];
 
-    self = [self initWithTitle:iconName style:UIBarButtonItemStylePlain target:target action:action];
-    if (self)
-    {
-        CGFloat defaultfontSize = [[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline] pointSize];
-        UIColor *defaultColor = color;
+    CGFloat defaultfontSize = [[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline] pointSize];
+    UIColor *defaultColor = color;
 
-        NSDictionary *attributes = [[UIBarButtonItem appearance] titleTextAttributesForState:UIControlStateNormal];
-        if (attributes)
-        {
-            defaultfontSize = [(UIFont *)attributes[NSFontAttributeName] pointSize];
-            defaultColor = attributes[NSForegroundColorAttributeName];
-        }
+    NSDictionary *attributes = [[UIBarButtonItem appearance] titleTextAttributesForState:UIControlStateNormal];
 
-        NSAttributedString *iconString = [NSAttributedString symbolsetIconStringWithFont:font iconName:iconName size:defaultfontSize color:defaultColor];
-        NSRange range = NSMakeRange(0, iconString.length);
-        attributes = [iconString attributesAtIndex:0 effectiveRange:&range];
-        [self setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    if (attributes) {
+        defaultfontSize = [(UIFont *)attributes[NSFontAttributeName] pointSize];
+        defaultColor = attributes[NSForegroundColorAttributeName];
     }
-    return self;
+
+    NSAttributedString *iconString = [NSAttributedString bdb_symbolsetIconStringWithFont:font
+                                                                                iconName:iconName
+                                                                                    size:defaultfontSize
+                                                                                   color:defaultColor];
+    NSRange range = NSMakeRange(0, iconString.length);
+    attributes = [iconString attributesAtIndex:0 effectiveRange:&range];
+
+    [button setTitleTextAttributes:attributes forState:UIControlStateNormal];
+
+    return button;
 }
 
 @end

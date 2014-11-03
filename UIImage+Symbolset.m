@@ -27,35 +27,43 @@
 #pragma mark -
 @implementation UIImage (Symbolset)
 
-+ (instancetype)symbolsetIconNamed:(NSString *)iconName withFont:(SSFontName)font size:(CGSize)size
-{
++ (instancetype)bdb_symbolsetIconNamed:(NSString *)iconName
+                              withFont:(SSFontName)font
+                                  size:(CGSize)size {
     static NSCache *_ssIconCache = nil;
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _ssIconCache = [NSCache new];
     });
 
-    if (CGSizeEqualToSize(size, CGSizeZero))
-        size = CGSizeMake(64.0, 64.0);
+    if (CGSizeEqualToSize(size, CGSizeZero)) {
+        size = CGSizeMake(64.f, 64.f);
+    }
 
-    NSAttributedString *iconString = [NSAttributedString symbolsetIconStringWithFont:font iconName:iconName size:12 color:[UIColor whiteColor]];
+    NSAttributedString *iconString = [NSAttributedString bdb_symbolsetIconStringWithFont:font
+                                                                                iconName:iconName
+                                                                                    size:12
+                                                                                   color:[UIColor whiteColor]];
     CGRect iconRect = [iconString boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil];
 
-    CGFloat fontSize = size.height * (12.0 / iconRect.size.height);
-    UIFont *iconFont = [UIFont fontWithSymbolsetFontNamed:font size:fontSize];
+    CGFloat fontSize = size.height * (12.f / iconRect.size.height);
+    UIFont *iconFont = [UIFont bdb_symbolsetFontNamed:font size:fontSize];
 
     NSString *identifier = [NSString stringWithFormat:@"%@_%@_%0.2f", iconName, iconFont.fontName, fontSize];
 
     UIImage *image = [_ssIconCache objectForKey:identifier];
-    if (!image)
-    {
-        iconString = [NSAttributedString symbolsetIconStringWithFont:font iconName:iconName size:fontSize color:[UIColor whiteColor]];
+
+    if (!image) {
+        iconString = [NSAttributedString bdb_symbolsetIconStringWithFont:font
+                                                                iconName:iconName
+                                                                    size:fontSize
+                                                                   color:[UIColor whiteColor]];
         CGSize iconSize = [iconString boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
         iconSize.width  = ceil(iconSize.width);
         iconSize.height = ceil(iconSize.height);
 
-        if (!CGSizeEqualToSize(CGSizeZero, iconSize))
-        {
+        if (!CGSizeEqualToSize(CGSizeZero, iconSize)) {
             UIGraphicsBeginImageContextWithOptions(iconSize, NO, 0);
             [iconString drawAtPoint:CGPointZero];
             image = UIGraphicsGetImageFromCurrentImageContext();

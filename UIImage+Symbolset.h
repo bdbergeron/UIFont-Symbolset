@@ -20,7 +20,7 @@
 //  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import "UIFont+Symbolset.h"
 
@@ -28,6 +28,8 @@
 #pragma mark -
 @interface UIImage (Symbolset)
 
-+ (instancetype)symbolsetIconNamed:(NSString *)iconName withFont:(SSFontName)font size:(CGSize)size;
++ (instancetype)bdb_symbolsetIconNamed:(NSString *)iconName
+                              withFont:(SSFontName)font
+                                  size:(CGSize)size;
 
 @end
