@@ -42,7 +42,9 @@
                                @"SSSocialRegular",
                                @"SSSocialCircle",
                                @"SSPika",
-                               @"SSGizmo"];
+                               @"SSGizmo",
+                               @"SSGlyphish-Outlined",
+                               @"SSGlyphish-Filled"];
     });
 
     return _ssFontFamilyNames[fontName];

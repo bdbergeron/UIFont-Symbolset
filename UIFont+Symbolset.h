@@ -30,7 +30,9 @@ typedef NS_ENUM(NSInteger, SSFontName) {
     SSFontNameSocial,
     SSFontNameSocialCircle,
     SSFontNamePika,
-    SSFontNameGizmo
+    SSFontNameGizmo,
+    SSFontNameGlyphishOutlined,
+    SSFontNameGlyphishFilled
 };
 
 
