@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name      = 'UIFont-Symbolset'
-  s.version   = '1.1'
+  s.version   = '1.1.1'
   s.license   = 'MIT'
   s.summary   = 'A collection of Objective-C categories to make using Symbolset icon fonts easier.'
   s.homepage  = 'https://github.com/bdbergeron/UIFont-Symbolset'
